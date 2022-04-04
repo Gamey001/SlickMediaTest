@@ -1,0 +1,28 @@
+.App{ text-align: center; }
+html{ font-size: 15px; overflow-x: hidden; }
+
+.App-link{ color: #61dafb; }
+
+/*media queries*/
+@media (max-width: 834px) {
+  .App-header__hero-caption {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%,-50%) !important; }
+  .App-header__nav-wrapper, .App-header__hero-caption {
+    text-align: center;
+  }
+  .App-header { min-height: auto;}
+}
+@media (max-width: 380px) {
+  .App-header__hero-caption {
+    font-size: 2.53rem !important;
+    line-height: 3.29rem !important;
+  }
+  .App-header__search { height: 2.8rem !important;}
+  .App-header__search-wrapper { width: 20rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .App-main-body__mov-set{ margin-left: 2.8rem !important;}
+}
