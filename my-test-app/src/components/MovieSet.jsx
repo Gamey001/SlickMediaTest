@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+ import React, { useCallback, useState, useEffect } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import MovieCard from "./MovieCard";
 import omdbData from "../helpers/apiKey";
@@ -8,7 +8,7 @@ function MovieSet({ title, keyword }) {
 
   const getMovies = useCallback((keyword) => {
     let results = [];
-    fetch(`http://www.omdbapi.com/?s=${keyword}&apikey=${omdbData.omdbKey}`)
+    fetch(`https://www.omdbapi.com/?s=${keyword}&apikey=${omdbData.omdbKey}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.Search) results = data.Search;
