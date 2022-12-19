@@ -1,15 +1,4 @@
-.App{ text-align: center; }
-html{ font-size: 100%;}
 
-.App-link{ color: #61dafb; }
-
-/*media queries*/
-@media (max-width: 834px) {
-  .App-header__hero-caption {
-    
-  }
-  .App-header { min-height: auto;}
-}
 @media (max-width: 380px) {
-  
+  body{font-size: 70%;}
 }

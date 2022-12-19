@@ -35,7 +35,7 @@ function Hero() {
           color: "rgb(255,255,255)",
           fontFamily: "DM Sans",
           fontWeight: "bold",
-          fontSize: "4em",
+          fontSize: "4.5em",
           lineHeight: "6.25rem",
         }}
         variant="h1"

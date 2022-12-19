@@ -22,7 +22,7 @@ function Navbar() {
       >
         <img
           style={{
-            margin: "2.5rem 5.347222222222222222222222222222%",
+            margin: "2.5em 5.347222222222222222222222222222%",
             background: "#282c34",
           }}
           src={require("../assets/images/Logo_mytest.png")}
