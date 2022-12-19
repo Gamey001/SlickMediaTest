@@ -8,7 +8,7 @@ function MovieSets({ keywords, movieCats, searchKeyword }) {
       <Box>
         <MovieSet keyword={searchKeyword} title="Search Results" />
         {keywords.map((keyword, idx) => (
-          <MovieSet keyword={keyword} title={movieCats[idx]} key={keyword} />
+          <MovieSet keyword={keyword} title={movieCats[idx]}/>
         ))}
       </Box>
     </>

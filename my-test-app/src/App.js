@@ -6,6 +6,7 @@ import MovieSets from "./components/MovieSets";
 import { useState } from "react";
 import { Box } from "@mui/material";
 
+
 /** Inline style is used for mostly used due to size of the app
  *  check App.css for all other styles
 */
@@ -17,8 +18,9 @@ function App() {
   const [searchKeyword, setSearchKeyword] = useState("");
 
   return (
+
     <Box className="app-container">
-      <header className="App-header">
+      <header className='App-header'>
         <Navbar />
         <Hero />
         <Search

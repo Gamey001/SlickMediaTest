@@ -25,19 +25,18 @@ function MovieSet({ title, keyword }) {
   return (
     <>
       {Boolean(movs.length) && (
-        <Box
-          sx={{ overflowX: "scroll" }}
+        <Box          
           marginBottom="9.56rem"
-          marginLeft="4.19rem"
+          marginLeft="4.652777777777777777777777777778%"
           className="App-main-body__mov-set"
         >
           <Box>
-            <Box width="17.44rem" marginBottom="1.12rem">
+            <Box marginBottom="1.12rem">
               <Typography variant="h5">{title}</Typography>
             </Box>
 
-            <Box sx={{ width: "97rem" }}>
-              <Grid flexWrap="nowrap" container spacing="0.8125rem">
+            <Box sx={{ maxWidth:"1552px", overflowX: "auto" }}>
+              <Grid flexWrap="nowrap" container spacing="0.8125em">
                 {movs.map((movie) => (
                   <MovieCard key={movie.imdbID} movieName={movie.Title} />
                 ))}

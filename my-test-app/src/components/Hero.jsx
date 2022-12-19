@@ -4,44 +4,45 @@ import { useMediaQuery } from "react-responsive";
 
 function Hero() {
   const isIphoneSEScreen = useMediaQuery({
-    query: "(max-width: 380px)",
+    query: "(min-width: 576px)",
   });
   const isIphoneIpadScreen = useMediaQuery({
-    query: "(max-width: 834px)",
+    query: "(min-width: 768px)",
   });
 
-  const bgImg = useMemo(()=>{
-    if(isIphoneSEScreen) return "Hero2";
-    if(isIphoneIpadScreen) return "Hero3";
-    return "Hero";
-})
+  const bgImg = useMemo(() => {
+    if (isIphoneSEScreen) return "Hero3";
+    if (isIphoneIpadScreen) return "Hero";
+    return "Hero2";
+  });
   return (
-    <Box sx={{ position: "relative" }}>
+    <Box
+      className="landing-page-wrapper"
+      sx={{
+        background: `url(${require("../assets/images/" +
+          bgImg +
+          ".png")}) center no-repeat`,
+        backgroundSize: "100% 100%",
+        minHeight: "257px",
+        padding: 1,
+        textAlign: isIphoneSEScreen || isIphoneIpadScreen ? "left" : "center",
+      }}
+    >
       <Typography
-        className="App-header__hero-caption"
+        className="App-header__hero-caption" 
         sx={{
-          position: "absolute",
-          top: "4.12rem",
-          left: "6rem",
+          margin: "6.8125rem 5.347222222222222222222222222222%",
           color: "rgb(255,255,255)",
           fontFamily: "DM Sans",
           fontWeight: "bold",
-          fontSize: "4.8rem",
+          fontSize: "4em",
           lineHeight: "6.25rem",
         }}
         variant="h1"
       >
-        <span style={{ whiteSpace: "nowrap" }}>
-          Watch {!isIphoneSEScreen && <br />} something
-        </span>
-        <br />
+        Watch <br /> something <br />
         incredible.
       </Typography>
-      <img
-        style={{ height: "34.38rem", width: "100%" }}
-        src={require(`../assets/images/${bgImg}.png`)}
-        alt="hero"
-      />
     </Box>
   );
 }

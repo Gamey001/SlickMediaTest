@@ -10,7 +10,7 @@ function Search({ searchKeyword, setSearchKeyword }) {
   return (
     <Box
       className="App-header__search-wrapper"
-      sx={{ height: "5.56rem", margin: "4.75rem 3.62rem 9.5rem 3.62rem" }}
+      sx={{ height: "5.56rem", margin: "4.75rem 5.347222222222222222222222222222% 9.5rem" }}
     >
       <Typography marginBottom="0.24rem" variant="h5">
         Search
@@ -22,7 +22,7 @@ function Search({ searchKeyword, setSearchKeyword }) {
         className="App-header__search"
         sx={{
           border: ".1rem solid rgb(0,0,0)",
-          padding: ".55rem",
+          padding: "0.380859375em",
           width: "100%",
         }}
       />
