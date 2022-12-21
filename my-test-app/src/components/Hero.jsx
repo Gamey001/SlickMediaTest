@@ -1,20 +1,16 @@
 import React, { useMemo } from "react";
 import { Box, Typography } from "@mui/material";
-import { useMediaQuery } from "react-responsive";
 
-function Hero() {
-  const isIphoneSEScreen = useMediaQuery({
-    query: "(min-width: 576px)",
-  });
-  const isIphoneIpadScreen = useMediaQuery({
-    query: "(min-width: 768px)",
-  });
+function Hero({ mediaQs }) {
+  const { isLargeScreenSize } = mediaQs;
+  const { isMediumScreenSize } = mediaQs;
 
   const bgImg = useMemo(() => {
-    if (isIphoneSEScreen) return "Hero3";
-    if (isIphoneIpadScreen) return "Hero";
+    if (isMediumScreenSize) return "Hero3";
+    if (isLargeScreenSize) return "Hero";
     return "Hero2";
-  });
+  }, [isMediumScreenSize, isLargeScreenSize]);
+  
   return (
     <Box
       className="landing-page-wrapper"
@@ -25,11 +21,11 @@ function Hero() {
         backgroundSize: "100% 100%",
         minHeight: "257px",
         padding: 1,
-        textAlign: isIphoneSEScreen || isIphoneIpadScreen ? "left" : "center",
+        textAlign: isMediumScreenSize || isLargeScreenSize ? "left" : "center",
       }}
     >
       <Typography
-        className="App-header__hero-caption" 
+        className="landing-page-wraper__display-text"
         sx={{
           margin: "6.8125rem 5.347222222222222222222222222222%",
           color: "rgb(255,255,255)",

@@ -1,22 +1,17 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { useMediaQuery } from "react-responsive";
 
-function Navbar() {
-  const isIphoneSEScreen = useMediaQuery({
-    query: "(min-width: 576px)",
-  });
-  const isIphoneIpadScreen = useMediaQuery({
-    query: "(min-width: 768px)",
-  });
+function Navbar({ mediaQs }) {
+  const { isLargeScreenSize } = mediaQs;
+  const { isMediumScreenSize } = mediaQs;
 
   return (
-    <div className="App-header__nav-wrapper">
+    <div className="navbar-wrapper">
       <Box
         style={{
           background: "#282c34",
           textAlign: `${
-            isIphoneSEScreen || isIphoneIpadScreen ? "left" : "center"
+            isMediumScreenSize || isLargeScreenSize ? "left" : "center"
           }`,
         }}
       >
@@ -26,6 +21,7 @@ function Navbar() {
             background: "#282c34",
           }}
           src={require("../assets/images/Logo_mytest.png")}
+          alt="Mytest app logo"
         />
       </Box>
     </div>

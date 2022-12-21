@@ -1,44 +1,40 @@
- import React, { useCallback, useState, useEffect } from "react";
+import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import MovieCard from "./MovieCard";
-import omdbData from "../helpers/apiKey";
+import { useMemo } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
-function MovieSet({ title, keyword }) {
+function MovieSet({ title, keyword, getMovies }) {
   const [movs, setMovs] = useState([]);
-
-  const getMovies = useCallback((keyword) => {
-    let results = [];
-    fetch(`https://www.omdbapi.com/?s=${keyword}&apikey=${omdbData.omdbKey}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.Search) results = data.Search;
-        setMovs(results);
-      })
-      .catch(() => ({
-        error: { message: "Unable to connect to server. Please try again" },
-      }));
-  }, []);
+  const list = useMemo(() => {
+    console.log('run')
+    return getMovies(keyword);
+  }, [keyword, getMovies]);
 
   useEffect(() => {
-    getMovies(keyword);
-  }, [keyword, getMovies]);
+    list.then((data=>setMovs(data.Search)))
+  }, [keyword]);
   return (
     <>
-      {Boolean(movs.length) && (
-        <Box          
-          marginBottom="9.56rem"
-          marginLeft="4.652777777777777777777777777778%"
-          className="App-main-body__mov-set"
+      {!movs || !movs.length ? (
+        ""
+      ) : (
+        <Box
+          sx={{
+            marginBottom: "9.56rem",
+            marginLeft: "4.652777777777777777777777777778%",
+          }}
+          className="main-body__mov-set"
         >
           <Box>
-            <Box marginBottom="1.12rem">
+            <Box sx={{ marginBottom: "1.12rem" }}>
               <Typography variant="h5">{title}</Typography>
             </Box>
-
-            <Box sx={{ maxWidth:"1552px", overflowX: "auto" }}>
-              <Grid flexWrap="nowrap" container spacing="0.8125em">
-                {movs.map((movie) => (
-                  <MovieCard key={movie.imdbID} movieName={movie.Title} />
+            <Box sx={{ maxWidth: "1552px", overflowX: "auto" }}>
+              <Grid sx={{ flexWrap: "nowrap" }} container spacing="0.8125em">
+                {movs.map(({ imdbID, Title }) => (
+                  <MovieCard key={imdbID} movieName={Title} />
                 ))}
               </Grid>
             </Box>

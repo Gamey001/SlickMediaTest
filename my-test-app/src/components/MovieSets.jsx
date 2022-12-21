@@ -2,14 +2,26 @@ import { Box } from "@mui/material";
 import React from "react";
 import MovieSet from "./MovieSet";
 
-function MovieSets({ keywords, movieCats, searchKeyword }) {
+function MovieSets({ keywords, movieCategories, searchKeyword, getMovies }) {
   return (
     <>
       <Box>
-        <MovieSet keyword={searchKeyword} title="Search Results" />
-        {keywords.map((keyword, idx) => (
-          <MovieSet keyword={keyword} title={movieCats[idx]}/>
-        ))}
+        {Boolean(searchKeyword) && (
+          <MovieSet
+            keyword={searchKeyword}
+            getMovies={getMovies}
+            title="Search Results"
+          />
+        )}
+        {keywords.length &&
+          keywords.map((keyword, idx) => (
+            <MovieSet
+              key={keyword}
+              keyword={keyword}
+              title={movieCategories[idx]}
+              getMovies={getMovies}
+            />
+          ))}
       </Box>
     </>
   );

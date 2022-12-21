@@ -1,28 +1,43 @@
-import "./App.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Search from "./components/Search";
 import MovieSets from "./components/MovieSets";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Box } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
+import omdbData from "./helpers/apiKey";
 
+const movieSets = ["Science Fiction", "Fantasy"];
+const keywords = ["inception", "the twilight saga"];
 
-/** Inline style is used for mostly used due to size of the app
- *  check App.css for all other styles
-*/
 function App() {
-  const [sfMovies, setSfMovies] = useState([]);
-  const [faMovies, setFaMovies] = useState([]);
-  const [movieSets, setMovieSets] = useState(["Science Fiction", "Fantasy"]);
-  const [keywords, setKeywords] = useState(["inception", "the twilight saga"]);
   const [searchKeyword, setSearchKeyword] = useState("");
 
-  return (
+  const getMovies = useCallback(async (keyword) => {
+    return await fetch(
+      `https://www.omdbapi.com/?s=${keyword}&apikey=${omdbData.omdbKey}`
+    )
+      .then((res) => res.json())
+      .then((data) => data)
+      .catch(() => ({
+        error: { message: "Unable to connect to server. Please try again" },
+      }));
+  }, []);
 
+  //media queries
+  const isMediumScreenSize = useMediaQuery({
+    query: "(min-width: 576px)",
+  });
+  const isLargeScreenSize = useMediaQuery({
+    query: "(min-width: 768px)",
+  });
+  const mediaQs = { isMediumScreenSize, isLargeScreenSize };
+
+  return (
     <Box className="app-container">
-      <header className='App-header'>
-        <Navbar />
-        <Hero />
+      <header className="App-header">
+        <Navbar mediaQs={mediaQs} />
+        <Hero mediaQs={mediaQs} />
         <Search
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}
@@ -31,9 +46,8 @@ function App() {
       <MovieSets
         searchKeyword={searchKeyword}
         keywords={keywords}
-        sfMovies={sfMovies}
-        faMovies={faMovies}
-        movieCats={movieSets}
+        movieCategories={movieSets}
+        getMovies={getMovies}
       />
     </Box>
   );
